@@ -1,8 +1,7 @@
-import React from 'react';
 
 const Settings = () => {
     return (
-        <aside>
+    <aside className='flex-[1.5]'>
             User Settings
         </aside>
     );

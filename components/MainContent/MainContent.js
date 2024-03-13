@@ -1,3 +1,4 @@
+'use client'
 import useDuas from '@/hooks/useDuas';
 import React from 'react';
 
@@ -5,7 +6,7 @@ const MainContent = () => {
     const duas = useDuas()
 
     return (
-        <aside className='flex-[3]'>
+        <aside className='lg:flex-[3] max-lg:w-full'>
             <ul className="list-inside">
                 {
                     duas?.length ? duas?.map(dua => {

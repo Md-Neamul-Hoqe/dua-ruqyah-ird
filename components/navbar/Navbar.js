@@ -1,3 +1,4 @@
+'use client'
 import * as React from 'react';
 import { styled, alpha } from '@mui/material/styles';
 import AppBar from '@mui/material/AppBar';
@@ -17,13 +18,14 @@ import MoreIcon from '@mui/icons-material/MoreVert';
 import Image from 'next/image';
 
 import logo from "@/public/logo.svg";
+import { Settings } from '@mui/icons-material';
 
 const Search = styled('div')(({ theme }) => ({
     position: 'relative',
     borderRadius: theme.shape.borderRadius,
-    backgroundColor: alpha(theme.palette.common.white, 0.15),
+    backgroundColor: alpha(theme.palette.common.black, 0.15),
     '&:hover': {
-        backgroundColor: alpha(theme.palette.common.white, 0.25),
+        backgroundColor: alpha(theme.palette.common.black, 0.25),
     },
     marginRight: theme.spacing(2),
     marginLeft: 0,
@@ -38,6 +40,7 @@ const SearchIconWrapper = styled('div')(({ theme }) => ({
     padding: theme.spacing(0, 2),
     height: '100%',
     position: 'absolute',
+    top: 0,
     pointerEvents: 'none',
     display: 'flex',
     alignItems: 'center',
@@ -157,27 +160,29 @@ export default function Navbar() {
     );
 
     return (
-        <Box sx={{ flexGrow: 1 }} xs={{ backgroundColor: 'white' }}>
-            <AppBar position="fixed">
-                <Toolbar>
-                    <IconButton
-                        size="large"
-                        edge="start"
-                        color="inherit"
-                        aria-label="open drawer"
-                        sx={{ mr: 2 }}
-                    >
-                        <Image className='md:hidden' height={65} width={65} src={logo} alt='logo for the site' />
+        <Box sx={{zIndex: '50', width: 1, border: '1px solid red' }}>
+            <AppBar className='max-md:absolute relative w-full h-full items-center bg-transparent shadow-none'>
+                <Toolbar className='flex w-full'>
+                    <Box className='flex items-center'>
+                        <IconButton
+                            size="large"
+                            edge="start"
+                            color="inherit"
+                            aria-label="logo"
+                            sx={{ mr: 2 }}
+                        >
+                            <Image className='md:hidden' height={65} width={65} src={logo} alt='logo for the site' />
+                        </IconButton>
 
-                    </IconButton>
-                    <Typography
-                        variant="h6"
-                        noWrap
-                        component="div"
-                        sx={{ display: { xs: 'none', sm: 'block' } }}
-                    >
-                        Dua & Ruqyah
-                    </Typography>
+                        <Typography
+                            variant="h6"
+                            noWrap
+                            component="div"
+                            sx={{ display: { xs: 'none', sm: 'block' } }}
+                        >
+                            Dua & Ruqyah
+                        </Typography>
+                    </Box>
 
                     <Box sx={{ flexGrow: 1 }} />
 
@@ -192,19 +197,8 @@ export default function Navbar() {
                     </Search>
 
                     <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
-                        <IconButton size="large" aria-label="show 4 new mails" color="inherit">
-                            <Badge badgeContent={4} color="error">
-                                <MailIcon />
-                            </Badge>
-                        </IconButton>
-                        <IconButton
-                            size="large"
-                            aria-label="show 17 new notifications"
-                            color="inherit"
-                        >
-                            <Badge badgeContent={17} color="error">
-                                <NotificationsIcon />
-                            </Badge>
+                        <IconButton size="large" aria-label="show 4 new mails" color="success">
+                            <Settings />
                         </IconButton>
                         <IconButton
                             size="large"
@@ -216,18 +210,6 @@ export default function Navbar() {
                             color="inherit"
                         >
                             <AccountCircle />
-                        </IconButton>
-                    </Box>
-                    <Box sx={{ display: { xs: 'flex', md: 'none' } }}>
-                        <IconButton
-                            size="large"
-                            aria-label="show more"
-                            aria-controls={mobileMenuId}
-                            aria-haspopup="true"
-                            onClick={handleMobileMenuOpen}
-                            color="inherit"
-                        >
-                            <MoreIcon />
                         </IconButton>
                     </Box>
                 </Toolbar>

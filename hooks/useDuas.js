@@ -1,3 +1,4 @@
+'use client'
 import { useEffect, useState } from "react";
 
 
@@ -17,6 +18,7 @@ const useDuas = () => {
         }
     }, [ setDuas ])
 
+    console.log(duas);
     return duas;
 };
 
