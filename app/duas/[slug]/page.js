@@ -2,17 +2,19 @@ import { getBaseURL } from "@/utils/getBaseURL";
 
 import DuaCard from "@/components/dua/DuaCard";
 
-// export async function generateStaticParams() {
-//     const categories = await fetch(`${getBaseURL}/categories`).then(res => res.json()).catch(error => console.error(error))
+export async function generateStaticParams() {
+    const categories = await fetch(`${getBaseURL}/categories`).then(res => res.json()).catch(error => console.error(error))
 
-//     const slugs = categories?.map(category => { return { slug: category?.cat_name_en.replace(' ', '-'), cat: category?.cat_id } })
+    const slugs = categories?.map(category => { return { slug: category?.cat_name_en.replace(' ', '-'), cat: category?.cat_id } })
 
-//     return slugs
-// }
+    return slugs
+}
+console.log(getBaseURL);
 
-const DuasPage = async ({ params, searchParams }) => {
+export default async function DuasPage({ params, searchParams }) {
+    console.log(params, searchParams);
 
-    const res = await fetch(searchParams?.subcat ? `${getBaseURL}/dua/${params.slug}?cat=${searchParams.cat}&subcat=${searchParams?.subcat}` : `${getBaseURL}/dua/${params.slug}?cat=${searchParams.cat}`)
+    const res = await fetch(searchParams?.subcat ? `http://localhost:5000/api/v1/dua/${params?.slug}?cat=${searchParams?.cat}&subcat=${searchParams?.subcat}` : `http://localhost:5000/api/v1/dua/${params?.slug}?cat=${searchParams?.cat}`)
     const dua = await res.json()
 
 
@@ -24,5 +26,3 @@ const DuasPage = async ({ params, searchParams }) => {
         </div>
     );
 };
-
-export default DuasPage;

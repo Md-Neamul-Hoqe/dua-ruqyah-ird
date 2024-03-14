@@ -25,11 +25,11 @@ const CategoryList = () => {
                 {
                     categories?.length && subCategories?.length ? categories?.map(category => {
 
-                        const { id, cat_icon, no_of_subcat, no_of_dua, cat_name_bn, cat_name_en } = category
+                        const { id, cat_id, cat_icon, no_of_subcat, no_of_dua, cat_name_bn, cat_name_en } = category
 
                         return (
                             <li className="bg-white py-2 px-5 cursor-pointer last-of-type:rounded-b-lg" key={id} onClick={() => setCat(id)}>
-                                <Link href={`/duas/${cat_name_en.replace(' ', '-')}?cat=${cat}`}>
+                                <Link href={`/duas/${cat_name_en.replace(' ', '-')}?cat=${cat_id}`}>
                                     <span className="flex items-center gap-4 pb-3">
                                         <Image height={40} width={40} src={images[ cat_icon ]} alt={cat_icon} />
                                         <span className="flex flex-col gap-1">

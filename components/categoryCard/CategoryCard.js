@@ -18,9 +18,11 @@ const CategoryCard = ({ category }) => {
         setCat(cat_id)
     }, [ setCat, cat_id ])
 
+    console.log(cat_id);
+
     return (
         <Card sx={{ display: 'flex', borderRadius: 2 }}>
-            <CardActionArea href={`/duas/${cat_name_en.replace(' ', '-')}?cat=${id}`} sx={{ display: 'flex', p: 1 }}>
+            <CardActionArea href={`/duas/${cat_name_en.replace(' ', '-')}?cat=${cat_id}`} sx={{ display: 'flex', p: 1 }}>
                 <CardContent sx={{ display: 'flex', flex: '1 0 auto', gap: 2 }}>
                     <Image height={60} width={60} src={images[ cat_icon ]} alt={cat_icon} />
                     <Box sx={{ flex: 1 }}>
