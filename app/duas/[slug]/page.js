@@ -14,7 +14,7 @@ console.log(getBaseURL);
 export default async function DuasPage({ params, searchParams }) {
     console.log(params, searchParams);
 
-    const res = await fetch(searchParams?.subcat ? `http://localhost:5000/api/v1/dua/${params?.slug}?cat=${searchParams?.cat}&subcat=${searchParams?.subcat}` : `http://localhost:5000/api/v1/dua/${params?.slug}?cat=${searchParams?.cat}`)
+    const res = await fetch(searchParams?.subcat ? `https://dua-ruqyah-ird-orpin.vercel.app/dua/${params?.slug}?cat=${searchParams?.cat}&subcat=${searchParams?.subcat}` : `https://dua-ruqyah-ird-orpin.vercel.app/dua/${params?.slug}?cat=${searchParams?.cat}`)
     const dua = await res.json()
 
 
