@@ -1,40 +1,28 @@
-'use client'
-import DuaCard from '@/components/dua/DuaCard';
-import Loader from '@/components/loader/Loader';
-import useDuas from '@/hooks/useDuas';
-import { useEffect, useState } from 'react';
+import { getBaseURL } from "@/utils/getBaseURL";
 
-const CategoryPage = ({ searchParams }) => {
-    const [ duas, setDuas ] = useState()
-    const allDuas = useDuas()
-    const { cat, subcat } = searchParams
+import DuaCard from "@/components/dua/DuaCard";
 
-    console.log(cat, subcat);
+// export async function generateStaticParams() {
+//     const categories = await fetch(`${getBaseURL}/categories`).then(res => res.json()).catch(error => console.error(error))
 
-    /* Filter according to category id and subcategory id */
-    useEffect(() => {
-        if (allDuas?.length) {
-            let newDuaSet = allDuas?.filter(dua => dua?.cat_id == cat)
+//     const slugs = categories?.map(category => { return { slug: category?.cat_name_en.replace(' ', '-'), cat: category?.cat_id } })
 
-            if (subcat) {
-                newDuaSet = newDuaSet?.filter(dua => dua?.subcat_id == subcat)
-            }
+//     return slugs
+// }
 
-            setDuas(newDuaSet)
-        }
-    }, [ allDuas, setDuas, cat, subcat ])
+const DuasPage = async ({ params, searchParams }) => {
+
+    const res = await fetch(searchParams?.subcat ? `${getBaseURL}/dua/${params.slug}?cat=${searchParams.cat}&subcat=${searchParams?.subcat}` : `${getBaseURL}/dua/${params.slug}?cat=${searchParams.cat}`)
+    const dua = await res.json()
+
 
     return (
-        <div className='flex flex-col gap-4'>
-            {
-                duas?.length ?
-                    duas.map(dua => (
-                        <DuaCard key={dua?.id} dua={dua} />
-                    ))
-                    : <Loader loaderOpen={!!duas?.length} />
-            }
+        <div className="flex flex-col gap-5">
+            {dua?.length && dua?.map(dua => (
+                <DuaCard key={dua.id} dua={dua} />
+            ))}
         </div>
     );
 };
 
-export default CategoryPage;
+export default DuasPage;

@@ -7,7 +7,7 @@ const useDuas = () => {
 
     useEffect(() => {
         const subscribe = async () => {
-            return await fetch('http://localhost:5000/api/v1/dua', {
+            return await fetch(`${getBaseURL}/dua`, {
                 cache: 'force-cache',
                 method: 'GET'
             }).then(res => res.json()).then(data => setDuas(data)).catch(console.error)
@@ -18,7 +18,6 @@ const useDuas = () => {
         }
     }, [ setDuas ])
 
-    console.log(duas);
     return duas;
 };
 

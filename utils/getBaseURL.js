@@ -1,0 +1,1 @@
+export const getBaseURL = process.env.NODE_ENV === 'development' ? 'http://localhost:5000/api/v1' : 'https://dua-ruqyah-ird-server.vercel.app/api/v1'

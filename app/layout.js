@@ -2,6 +2,7 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import LeftSidebar from "@/components/leftSidebar/LeftSidebar";
 import Navbar from "@/components/navbar/Navbar";
+import AuthProvider from "@/providers/AuthProvider";
 
 const inter = Inter({ subsets: [ "latin" ] });
 
@@ -18,20 +19,22 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en">
-      <body className={`flex min-h-screen ${inter.className}`}>
-        <main className="">
-          <div className="w-screen min-h-full flex">
-            <LeftSidebar />
-            <aside className="w-full md:w-[calc(100% - 6rem)] flex flex-col">
-              <Navbar />
-              <section className="w-full">
-                {children}
-              </section>
-            </aside>
-          </div>
-        </main>
-      </body>
-    </html>
+    <AuthProvider>
+      <html lang="en">
+        <body className={`flex min-h-screen ${inter?.className}`}>
+          <main className="">
+            <div className="w-screen min-h-full flex">
+              <LeftSidebar />
+              <aside className="w-full md:w-[calc(100% - 6rem)] flex flex-col">
+                <Navbar />
+                <section className="w-full">
+                  {children}
+                </section>
+              </aside>
+            </div>
+          </main>
+        </body>
+      </html>
+    </AuthProvider>
   );
 }

@@ -1,23 +1,21 @@
 import { Box, Grid } from "@mui/material";
 import CategoryList from "@/components/categoryList/CategoryList";
 
-export async function generateStaticParams() {
-    const res = await fetch('http://localhost:5000/api/v1/categories')
-    const duasCategories = await res.json();
-    const slugs = duasCategories.map(category => { return { slug: category?.cat_name_en.replace(' ', '-') } })
-
-    console.log(slugs);
-    return slugs
+export const metadata = {
+    title: {
+        default: 'Dua Page'
+    }
 }
 
-const CategoriesLayout = ({ children }) => {
+/* Dua page layout */
+const DuaLayout = ({ children }) => {
     return (
         <Box>
             <Grid container spacing={2}>
-                <Grid item xs={3}>
+                <Grid item sx={{ display: { xs: 'none', md: 'block' } }} xs={0} md={3}>
                     <CategoryList />
                 </Grid>
-                <Grid item xs={9}>
+                <Grid item xs={12} md={9}>
                     {children}
                 </Grid>
             </Grid>
@@ -25,4 +23,4 @@ const CategoriesLayout = ({ children }) => {
     )
 };
 
-export default CategoriesLayout;
+export default DuaLayout;
